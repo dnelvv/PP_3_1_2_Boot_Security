@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users list</title>
+</head>
+<body>
+<h1>Users list:</h1>
+<table th:border="1">
+    <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td colspan="5"> No Users Found </td>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:utext="${user.getId()}">Id</td>
+        <td th:utext="${user.getUsername()}">Username</td>
+        <td th:utext="${user.getName()}">Name</td>
+        <td th:utext="${user.getSurname()}">Surname</td>
+        <td th:utext="${user.getAge()}">Age</td>
+        <td><a th:href="@{/admin/edit/{id}(id=${user.id})}">Edit</a></td>
+        <td><a th:href="@{/admin/delete/{id}(id=${user.id})}">Delete</a></td>
+    </tr>
+</table>
+<br/>
+<a th:href="@{/admin/add}"><button type="button">Add new user</button></a>
+<br/>
+<a th:href="@{/logout}"><button type="button">Logout</button></a>
+</body>
+</html>
